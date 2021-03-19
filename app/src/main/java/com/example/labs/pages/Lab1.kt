@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import com.example.labs.R
 
 
-/* Fragment used as page 1 */
 class Lab1 : Fragment() {
     lateinit var buttonP:Button
     lateinit var progressBar:ProgressBar
@@ -50,5 +49,4 @@ class Lab1 : Fragment() {
                 progressStatus = 0
             }).start()
         }
-
 }

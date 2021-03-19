@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import com.example.labs.R
 
-/* Fragment used as page 1 */
+
 class Lab3 : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root =inflater.inflate(R.layout.lab3_frag, container, false)
