@@ -8,8 +8,8 @@ import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
-    lateinit var mViewPager:ViewPager
-    lateinit var tabLayout:TabLayout
+    lateinit var mViewPager: ViewPager
+    lateinit var tabLayout: TabLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         mViewPager?.adapter = PagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(mViewPager)
     }
-
 
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
