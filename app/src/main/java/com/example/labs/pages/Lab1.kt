@@ -2,8 +2,9 @@ package com.example.labs.pages
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnLongClickListener
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
@@ -34,11 +35,24 @@ class Lab1 : Fragment() {
             }
         }
         buttonL = root.findViewById(R.id.delay_button)
-        buttonL.setOnLongClickListener(OnLongClickListener {
-            var job = scope.launch {
-                progressFill()
+        var pressed = false
+        buttonL.setOnTouchListener(OnTouchListener { v, event ->
+
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                pressed = true
+                var job = scope.launch {
+                    while (pressed) {
+                        progressBar.progress += 1
+                        delay(100)
+                    }
+                }
             }
-            true
+            if (event.action == MotionEvent.ACTION_UP){
+                pressed = false
+                progressBar.progress = 0
+            }
+
+            false
         })
         return root
     }
