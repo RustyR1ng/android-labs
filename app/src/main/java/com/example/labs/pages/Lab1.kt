@@ -30,9 +30,7 @@ class Lab1 : Fragment() {
         buttonP = root.findViewById(R.id.click_button)
         val scope = CoroutineScope(Job())
         buttonP.setOnClickListener() {
-            var job = scope.launch {
-                progressFill()
-            }
+            progressBar.progress = 0
         }
         buttonL = root.findViewById(R.id.delay_button)
         var pressed = false
@@ -43,13 +41,14 @@ class Lab1 : Fragment() {
                 var job = scope.launch {
                     while (pressed) {
                         progressBar.progress += 1
-                        delay(100)
+                        delay(50)
                     }
                 }
             }
             if (event.action == MotionEvent.ACTION_UP){
+
                 pressed = false
-                progressBar.progress = 0
+                progressBar.progress = if(progressBar.progress==100) 100 else 0
             }
 
             false
