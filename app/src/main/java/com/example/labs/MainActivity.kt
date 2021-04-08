@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         // The ViewPager is responsible for sliding pages (fragments) in and out upon user input
         mViewPager = findViewById(R.id.viewpager)
         tabLayout = findViewById(R.id.tabLayout)
-        mViewPager?.adapter = PagerAdapter(supportFragmentManager)
+        mViewPager.adapter = PagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(mViewPager)
     }
 

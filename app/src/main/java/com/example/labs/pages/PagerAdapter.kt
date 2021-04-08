@@ -14,7 +14,8 @@ class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     private val PAGE_TITLES = arrayOf(
         "Lab 1",
         "Lab 2",
-        "Lab 3"
+        "Lab 3",
+        "Lab 4"
     )
 
 
@@ -22,7 +23,8 @@ class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     private val PAGES: Array<Fragment> = arrayOf<Fragment>(
         Lab1(),
         Lab2(),
-        Lab3()
+        Lab3(),
+        Lab4()
     )
 
     override fun getItem(position: Int): Fragment {
