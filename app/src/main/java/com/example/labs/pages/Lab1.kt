@@ -45,10 +45,10 @@ class Lab1 : Fragment() {
                     }
                 }
             }
-            if (event.action == MotionEvent.ACTION_UP){
+            if (event.action == MotionEvent.ACTION_UP) {
 
                 pressed = false
-                progressBar.progress = if(progressBar.progress==100) 100 else 0
+                progressBar.progress = if (progressBar.progress == 100) 100 else 0
             }
 
             false

@@ -9,20 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import android.widget.CompoundButton
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.labs.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.lab1_frag.*
-import kotlinx.android.synthetic.main.lab3_frag.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -40,7 +37,7 @@ class Lab2 : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraBtn: FloatingActionButton
-    lateinit var switch : Switch
+    lateinit var switch: Switch
     lateinit var viewFinder: PreviewView
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +46,7 @@ class Lab2 : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.lab2_frag, container, false)
         val playButton = root.findViewById<FloatingActionButton>(R.id.play_floating_btn)
-        viewFinder =root.findViewById(R.id.viewFinder)
+        viewFinder = root.findViewById(R.id.viewFinder)
         switch = root.findViewById(R.id.switch1)
 
         val playButtonIcon = root.findViewById<ImageView>(R.id.play_icon)

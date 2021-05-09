@@ -15,7 +15,8 @@ class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
         "Lab 1",
         "Lab 2",
         "Lab 3",
-        "Lab 4"
+        "Lab 4",
+        "Lab 5"
     )
 
 
@@ -24,7 +25,8 @@ class PagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
         Lab1(),
         Lab2(),
         Lab3(),
-        Lab4()
+        Lab4(),
+        Lab5()
     )
 
     override fun getItem(position: Int): Fragment {
