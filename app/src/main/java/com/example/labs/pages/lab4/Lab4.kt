@@ -100,8 +100,8 @@ class Lab4 : Fragment() {
                 AuthorizationResponse.Type.ERROR -> {
                     //
                 }
-                else -> {
-                    //
+                AuthorizationResponse.Type.EMPTY -> {
+
                 }
             }
         }
@@ -113,7 +113,7 @@ class Lab4 : Fragment() {
         private const val CLIENT_ID = "389518e6daf84f2ba4ded65b024e200e"
         private const val REDIRECT_URI = "http://com.example.labs/callback"
         private val SCOPES = arrayOf("streaming", "user-library-read")
-        lateinit var token : String
+        var token : String = "BQAQNqQjfIqA7p2J7km4ovizcAAd7CiKDKCH0xxJ7o2HRgAJ_2wTX0L1qyEfdWgvfMGIz1RsqtRQGyXtnYdPCgSN5OXfEgLYIP0xgSG0T9XAea_eHfRS51n69WCng5CYDgEcc6w2jA4lq5iFao4rG21SVwfVyoFAd2GJlOJ3j-Yta15r"
     }
 }
 
