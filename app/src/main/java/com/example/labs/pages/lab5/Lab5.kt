@@ -1,4 +1,4 @@
-package com.example.labs.pages
+package com.example.labs.pages.lab5
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,29 +7,37 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.labs.R
+import com.example.labs.pages.lab4.Lab4
+import com.example.labs.pages.lab4.Lab4VM
 import com.spotify.android.appremote.api.SpotifyAppRemote
 
-data class Album(var name: String, var artists: MutableList<String>)
-
 class Lab5 : Fragment() {
+    private lateinit var vm: Lab5VM
+
+
 
     lateinit var albumsRV: RecyclerView
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
     lateinit var token: String
     var albumsList = mutableListOf<Album>()
+    data class Album(var name: String, var artists: MutableList<String>)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
+        vm =
+            ViewModelProvider(this).get(Lab5VM::class.java)
+
         val root = inflater.inflate(R.layout.lab5_frag, container, false)
 
 

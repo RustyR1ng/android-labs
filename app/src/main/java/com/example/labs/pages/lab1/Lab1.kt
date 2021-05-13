@@ -1,4 +1,4 @@
-package com.example.labs.pages
+package com.example.labs.pages.lab1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -25,6 +26,8 @@ class Lab1 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         val root = inflater.inflate(R.layout.lab1_frag, container, false)
         progressBar = root.findViewById(R.id.progressBar)
         buttonP = root.findViewById(R.id.click_button)

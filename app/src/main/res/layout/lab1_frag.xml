@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.labs.pages.Lab1">
+    tools:context=".pages.lab1.Lab1">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -13,10 +13,10 @@
         android:orientation="vertical"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        >
 
         <TableRow
             android:layout_width="match_parent"

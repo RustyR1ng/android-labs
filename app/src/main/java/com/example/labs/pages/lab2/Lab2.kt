@@ -1,4 +1,4 @@
-package com.example.labs.pages
+package com.example.labs.pages.lab2
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -18,6 +18,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
@@ -232,6 +233,15 @@ class Lab2 : Fragment() {
         }
     }
 
+    fun fillSeekBar(videoPlayer: VideoView, seekBar: SeekBar, scope: CoroutineScope) {
+        scope.launch {
+            while (videoPlayer.isPlaying) {
+                seekBar.progress = videoPlayer.currentPosition / 1000
+            }
+        }
+
+    }
+
     companion object {
         private const val TAG = "CameraXBasic"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
@@ -240,11 +250,3 @@ class Lab2 : Fragment() {
     }
 }
 
-fun fillSeekBar(videoPlayer: VideoView, seekBar: SeekBar, scope: CoroutineScope) {
-    scope.launch {
-        while (videoPlayer.isPlaying) {
-            seekBar.progress = videoPlayer.currentPosition / 1000
-        }
-    }
-
-}

@@ -1,4 +1,4 @@
-package com.example.labs.pages
+package com.example.labs.pages.lab4
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,17 +9,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
-import com.spotify.sdk.android.authentication.AuthenticationClient
-import com.spotify.sdk.android.authentication.AuthenticationRequest
-import com.spotify.sdk.android.authentication.AuthenticationResponse
-import com.spotify.sdk.android.authentication.LoginActivity
+import com.spotify.sdk.android.auth.AuthorizationClient
+import com.spotify.sdk.android.auth.AuthorizationRequest
+import com.spotify.sdk.android.auth.AuthorizationResponse
+import com.spotify.sdk.android.auth.LoginActivity
+import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
+
+
+
 
 
 class Lab4 : Fragment() {
+    private lateinit var vm: Lab4VM
+
 
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
     private lateinit var tokenView: TextView
@@ -28,6 +35,9 @@ class Lab4 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        vm =
+            ViewModelProvider(this).get(Lab4VM::class.java)
+
         val root = inflater.inflate(R.layout.lab4_frag, container, false)
 
         tokenView = root.findViewById(R.id.token)
@@ -60,17 +70,16 @@ class Lab4 : Fragment() {
                     // Something went wrong when attempting to connect! Handle errors here
                 }
             })
-        val builder = AuthenticationRequest.Builder(CLIENT_ID,
-            AuthenticationResponse.Type.TOKEN,
+        val builder = AuthorizationRequest.Builder(CLIENT_ID,
+            AuthorizationResponse.Type.TOKEN,
             REDIRECT_URI)
 
         builder.setScopes(SCOPES)
 
         val request = builder.build()
 
-        AuthenticationClient.openLoginActivity(activity,
-            LoginActivity.REQUEST_CODE,
-            request)
+        val intent = AuthorizationClient.createLoginActivityIntent(activity, request)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     private fun connected() {
@@ -82,13 +91,13 @@ class Lab4 : Fragment() {
 
         // Check if result comes from the correct activity
         if (requestCode == LoginActivity.REQUEST_CODE) {
-            val response = AuthenticationClient.getResponse(resultCode, intent)
+            val response = AuthorizationClient.getResponse(resultCode, intent)
             when (response.type) {
-                AuthenticationResponse.Type.TOKEN -> {
+                AuthorizationResponse.Type.TOKEN -> {
                     token = response.accessToken
                     tokenView.text = token
                 }
-                AuthenticationResponse.Type.ERROR -> {
+                AuthorizationResponse.Type.ERROR -> {
                     //
                 }
                 else -> {

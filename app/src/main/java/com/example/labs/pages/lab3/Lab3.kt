@@ -1,4 +1,4 @@
-package com.example.labs.pages
+package com.example.labs.pages.lab3
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,6 @@ import androidx.fragment.app.Fragment
 import com.example.labs.R
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
-
-typealias LumaListener = (luma: Double) -> Unit
-
 
 class Lab3 : Fragment() {
     override fun onCreateView(
