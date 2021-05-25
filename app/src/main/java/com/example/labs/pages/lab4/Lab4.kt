@@ -17,11 +17,8 @@ import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
-import com.spotify.sdk.android.auth.LoginActivity
 import com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE
-
-
-
+import com.spotify.sdk.android.auth.LoginActivity
 
 
 class Lab4 : Fragment() {
@@ -90,7 +87,7 @@ class Lab4 : Fragment() {
         //super.onActivityResult(requestCode, resultCode, intent)
 
         // Check if result comes from the correct activity
-        if (requestCode == LoginActivity.REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE) {
             val response = AuthorizationClient.getResponse(resultCode, intent)
             when (response.type) {
                 AuthorizationResponse.Type.TOKEN -> {
@@ -103,6 +100,9 @@ class Lab4 : Fragment() {
                 AuthorizationResponse.Type.EMPTY -> {
 
                 }
+                else -> {
+
+                }
             }
         }
     }
@@ -113,7 +113,7 @@ class Lab4 : Fragment() {
         private const val CLIENT_ID = "389518e6daf84f2ba4ded65b024e200e"
         private const val REDIRECT_URI = "http://com.example.labs/callback"
         private val SCOPES = arrayOf("streaming", "user-library-read")
-        var token : String = "BQAQNqQjfIqA7p2J7km4ovizcAAd7CiKDKCH0xxJ7o2HRgAJ_2wTX0L1qyEfdWgvfMGIz1RsqtRQGyXtnYdPCgSN5OXfEgLYIP0xgSG0T9XAea_eHfRS51n69WCng5CYDgEcc6w2jA4lq5iFao4rG21SVwfVyoFAd2GJlOJ3j-Yta15r"
+        var token : String = ""
     }
 }
 

@@ -5,39 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.labs.R
 import com.example.labs.pages.lab4.Lab4
-import com.example.labs.pages.lab4.Lab4VM
 import com.spotify.android.appremote.api.SpotifyAppRemote
+import com.squareup.picasso.Picasso
+
+data class Album(var name: String, var artists: MutableList<String>, var imgUrl: String)
 
 class Lab5 : Fragment() {
-    private lateinit var vm: Lab5VM
-
-
 
     lateinit var albumsRV: RecyclerView
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
     lateinit var token: String
     var albumsList = mutableListOf<Album>()
-    data class Album(var name: String, var artists: MutableList<String>)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
-        vm =
-            ViewModelProvider(this).get(Lab5VM::class.java)
-
         val root = inflater.inflate(R.layout.lab5_frag, container, false)
 
 
@@ -60,6 +55,7 @@ class Lab5 : Fragment() {
         inner class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var name: TextView = itemView.findViewById(R.id.name)
             var artists: TextView = itemView.findViewById(R.id.artists)
+            var img: ImageView = itemView.findViewById(R.id.album_cover)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -73,6 +69,9 @@ class Lab5 : Fragment() {
             holder.apply {
                 artists.text = item.artists.toString()
                 name.text = item.name
+                Picasso.get()
+                    .load(item.imgUrl)
+                    .into(img)
             }
         }
 
@@ -98,12 +97,14 @@ class Lab5 : Fragment() {
                 for (albumNum in 0 until albums.length()) {
                     val album = albums.getJSONObject(albumNum).getJSONObject("album")
                     val artists = album.getJSONArray("artists")
+                    val img = album.getJSONArray("images")
+                    val imgUrl = img.getJSONObject(0).getString("url")
                     var artistsList = mutableListOf<String>()
                     for (artistNum in 0 until artists.length()) {
                         val artist = artists.getJSONObject(artistNum).getString("name")
                         artistsList.add(artist)
                     }
-                    albumsList.add(Album(album.getString("name"), artistsList))
+                    albumsList.add(Album(album.getString("name"), artistsList,imgUrl))
                 }
 
                 updateUI()
