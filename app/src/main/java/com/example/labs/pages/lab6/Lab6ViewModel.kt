@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class Lab6VM: ViewModel() {
+class Lab6ViewModel: ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

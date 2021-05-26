@@ -7,16 +7,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
+import com.example.labs.pages.lab6.Lab6ViewModel
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
 
 class Lab3 : Fragment() {
+    private lateinit var lab3ViewModel: Lab3ViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        lab3ViewModel = ViewModelProvider(this).get(Lab3ViewModel::class.java)
+
         val root = inflater.inflate(R.layout.lab3_frag, container, false)
         val scope = CoroutineScope(Job())
         val number: TextView = root.findViewById(R.id.number)

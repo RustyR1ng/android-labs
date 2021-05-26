@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
+import com.example.labs.pages.lab6.Lab6ViewModel
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
@@ -22,7 +23,7 @@ import com.spotify.sdk.android.auth.LoginActivity
 
 
 class Lab4 : Fragment() {
-    private lateinit var vm: Lab4VM
+    private lateinit var lab4ViewModel: Lab4ViewModel
 
 
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
@@ -32,8 +33,7 @@ class Lab4 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        vm =
-            ViewModelProvider(this).get(Lab4VM::class.java)
+        lab4ViewModel = ViewModelProvider(this).get(Lab4ViewModel::class.java)
 
         val root = inflater.inflate(R.layout.lab4_frag, container, false)
 

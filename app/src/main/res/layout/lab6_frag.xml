@@ -66,7 +66,8 @@
                     android:id="@+id/result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp" />
+                    android:padding="20dp"
+                    android:text="ENCRYPT_OR_DECRYPT_TEXT_FIELD" />
             </LinearLayout>
         </ScrollView>
 

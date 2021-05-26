@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -16,12 +17,15 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.labs.R
 import com.example.labs.pages.lab4.Lab4
+import com.example.labs.pages.lab6.Lab6ViewModel
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.squareup.picasso.Picasso
 
 data class Album(var name: String, var artists: MutableList<String>, var imgUrl: String)
 
 class Lab5 : Fragment() {
+
+    private lateinit var lab5ViewModel: Lab5ViewModel
 
     lateinit var albumsRV: RecyclerView
     lateinit var mSpotifyAppRemote: SpotifyAppRemote
@@ -33,6 +37,8 @@ class Lab5 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        lab5ViewModel = ViewModelProvider(this).get(Lab5ViewModel::class.java)
+
         val root = inflater.inflate(R.layout.lab5_frag, container, false)
 
 

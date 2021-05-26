@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
+import com.example.labs.pages.lab6.Lab6ViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -31,6 +32,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class Lab2 : Fragment() {
+
+    private lateinit var lab2ViewModel: Lab2ViewModel
+
     lateinit var videoPlayer: VideoView
     lateinit var videoPath: Uri
     lateinit var seekBar: SeekBar
@@ -45,6 +49,8 @@ class Lab2 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        lab2ViewModel = ViewModelProvider(this).get(Lab2ViewModel::class.java)
+
         val root = inflater.inflate(R.layout.lab2_frag, container, false)
         val playButton = root.findViewById<FloatingActionButton>(R.id.play_floating_btn)
         viewFinder = root.findViewById(R.id.viewFinder)

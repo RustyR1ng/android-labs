@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.labs.R
+import com.example.labs.pages.lab6.Lab6ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -18,6 +19,8 @@ import kotlinx.coroutines.launch
 
 
 class Lab1 : Fragment() {
+    private lateinit var lab1ViewModel: Lab1ViewModel
+
     lateinit var buttonP: Button
     lateinit var progressBar: ProgressBar
     lateinit var buttonL: Button

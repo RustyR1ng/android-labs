@@ -21,12 +21,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val navController = findNavController(R.id.nav_host_fragment)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration =
             AppBarConfiguration(setOf(R.id.nav_lab1, R.id.nav_lab2, R.id.nav_lab3, R.id.nav_lab4, R.id.nav_lab5, R.id.nav_lab6), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -44,12 +45,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intent)
 
-        /*for (fragment in supportFragmentManager.fragments) {
-            fragment.onActivityResult(requestCode, resultCode, data)
-        }
-*/
-    }
 }

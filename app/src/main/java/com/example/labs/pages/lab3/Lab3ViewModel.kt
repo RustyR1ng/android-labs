@@ -1,11 +1,11 @@
-package com.example.labs.pages.lab5
+package com.example.labs.pages.lab3
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class Lab5VM: ViewModel() {
+class Lab3ViewModel: ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
