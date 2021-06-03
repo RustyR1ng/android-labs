@@ -22,6 +22,7 @@ import com.example.labs.pages.lab6.Crypto.ChCrypto
 import com.google.android.material.textfield.TextInputEditText
 import java.io.*
 import java.math.BigInteger
+import java.nio.charset.Charset
 import java.security.MessageDigest
 
 
@@ -90,15 +91,24 @@ class Lab6 : Fragment() {
 
     fun decrypt(key: String, text: String): String = ChCrypto.aesDecrypt(text, key)
 
+    @ExperimentalStdlibApi
     fun readTextFromUri(uri: Uri): String {
         val stringBuilder = StringBuilder()
         contentResolver.openInputStream(uri)?.use { inputStream ->
-            BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                stringBuilder.append(reader.readText())
-            }
+                val buff = ByteArray(512)
+                var bytes: Int = inputStream.read(buff)
+                var str = ""
+                while (bytes != -1) {
+                    bytes = inputStream.read(buff)
+                    str = buff.decodeToString()
+                    val replacementChar =  Char(0)
+                    val indexOfRC = str.indexOf(replacementChar)
+                    str = if (indexOfRC==-1) str else str.substring(0, indexOfRC)
+                    stringBuilder.append(str)
+                }
         }
         Log.d("TEXT", stringBuilder.toString())
-        return stringBuilder.toString()
+        return  stringBuilder.toString()
     }
 
     fun openFileFor(action: String) {
@@ -147,6 +157,7 @@ class Lab6 : Fragment() {
         return permissionsGranted()
     }
 
+    @ExperimentalStdlibApi
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
