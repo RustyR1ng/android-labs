@@ -70,5 +70,6 @@ dependencies {
     //queues
     implementation 'com.android.volley:volley:1.2.0'
 
-
+    // WebSocket
+    implementation "org.java-websocket:Java-WebSocket:1.5.1"
 }
