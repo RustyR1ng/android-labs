@@ -21,6 +21,8 @@ import com.example.labs.R
 import com.example.labs.pages.lab6.Crypto.ChCrypto
 import com.google.android.material.textfield.TextInputEditText
 import java.io.*
+import java.math.BigInteger
+import java.security.MessageDigest
 
 
 class Lab6 : Fragment() {
@@ -72,23 +74,16 @@ class Lab6 : Fragment() {
         return root
     }
 
-    private fun getKey(): String {
-        val key = keyGen(keyInput.text.toString()).also {
-            keyInput.setText(it)
-        }
-        return key
-    }
+    private fun getKey(): String = keyGen(keyInput.text.toString())
 
-    private fun keyGen(key: String): String {
-        var newKey = key
-        if (key.length != 32) {
-            val randomString = (1..32 - key.length)
-                .map { i -> kotlin.random.Random.nextInt(0, CHAR_POOL.size) }
-                .map(CHAR_POOL::get)
-                .joinToString("")
-            newKey += (randomString)
-        }
-        return newKey
+
+    private fun keyGen(key: String): String = MD5(key)
+
+    fun MD5(string: String): String{
+        val md = MessageDigest.getInstance("MD5")
+        return BigInteger(1, md.digest(string.toByteArray()))
+            .toString(16)
+            .padStart(32, '0')
     }
 
     fun encrypt(key: String, text: String): String = ChCrypto.aesEncrypt(text, key)
