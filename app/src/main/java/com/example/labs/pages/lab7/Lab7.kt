@@ -47,7 +47,9 @@ class Lab7 : Fragment() {
 
         chatRV = root.findViewById(R.id.chat_RV)
 
-        chatRV.layoutManager = LinearLayoutManager(context)
+        chatRV.layoutManager = LinearLayoutManager(context).apply{
+            stackFromEnd = true
+        }
         chatRV.adapter = ChatAdapter(chatHistory)
 
 
@@ -158,7 +160,6 @@ class Lab7 : Fragment() {
 
     companion object {
         private const val WEB_SOCKET_URL = "wss://chatbot-ws.herokuapp.com/"
-
     }
 
 
