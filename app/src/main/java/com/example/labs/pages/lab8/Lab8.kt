@@ -18,12 +18,16 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.labs.R
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import org.json.JSONObject
 
 
 class Lab8 : Fragment() {
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var loginI : TextInputLayout
     lateinit var passwordI : TextInputLayout
     var token = ""
@@ -32,7 +36,10 @@ class Lab8 : Fragment() {
 
     private lateinit var queue: RequestQueue
     var data = mutableMapOf<String, String>()
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics = Firebase.analytics
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +55,10 @@ class Lab8 : Fragment() {
         imgV = root.findViewById(R.id.response_img)
 
         loginBtn.setOnClickListener{
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                param(FirebaseAnalytics.Param.ITEM_NAME, "Button")
+                param(FirebaseAnalytics.Param.CONTENT_TYPE, "Lab 8")}
+
             getToken(object : VolleyCallback {
                 override fun onSuccess(result: String) {
                     getData(token)
